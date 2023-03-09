@@ -9,65 +9,65 @@
 Clone the project
 
 ```
-**bash**
+bash
 
-** git@github.com:mskmee/rss_react.git**
+git@github.com:mskmee/rss_react.git
 ```
 
 Go to the project directory
 
 ```
-**bash**
+bash
 
-**cd rss_react**
+cd rss_react
 ```
 
-**```bash**
+```
+bash
 
-\*\* **cd** rss_react\*\*
-
-**```**
+cd rss_react
+```
 
 Install dependencies
 
-**```bash**
+```
+bash
 
-** npm i**
-
-**```**
+npm i
+```
 
 Start the server
 
-**```bash**
+```
+bash
 
-** npm run start**
-
-**```**
+npm run start
+```
 
 Tests coverage
 
-**```bash**
+```
+bash
 
-** npm run covera**
+npm run coverage
+```
 
-**```**
-
-**##**Build
+**##** Build
 
 To build this project run
 
-**```bash**
+```
+bash
 
-** npm run build**
+npm run build
+```
 
-**```**
-
-**##**Running Tests
+**##** Running Tests
 
 To run tests, run the following command
 
-**```bash**
+```
+bash
 
-** npm run **test
-
-**```**
+npm run test
+```
