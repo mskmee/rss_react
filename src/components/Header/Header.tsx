@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './Header.module.css';
 import logo from '../../assets/logo.png';
+import SearchBar from '../SearchBar/SearchBar';
 
 export default class Header extends Component {
   render() {
@@ -9,6 +10,7 @@ export default class Header extends Component {
         <a href="/">
           <img className={styles.logo} src={logo} alt="logo" />
         </a>
+        <SearchBar />
         <ul className={styles.links}>
           <li>
             <a className={styles.link} href="/">

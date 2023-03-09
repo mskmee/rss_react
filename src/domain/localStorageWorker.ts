@@ -3,5 +3,5 @@ export const setDataToLocalStorage = (data: string) => {
 };
 
 export const getDataFromLocalStorage = () => {
-  return localStorage.getItem('searchValue');
+  return localStorage.getItem('searchValue') || '';
 };
