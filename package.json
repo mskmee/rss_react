@@ -10,7 +10,7 @@
     "prepare": "husky install",
     "test": "eslint src --fix && vitest run --changed HEAD~1",
     "coverage": "vitest run --coverage",
-    "vitest": "vitest --changed HEAD~1",
+    "vitest": "vitest",
     "deploy": "eslint src --fix && vitest run --changed HEAD~1 && tsc && vite build && gh-pages -d dist"
   },
   "dependencies": {

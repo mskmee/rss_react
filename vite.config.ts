@@ -12,13 +12,5 @@ export default defineConfig({
       localsConvention: 'camelCase',
     },
   },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    coverage: {
-      reporter: ['text', 'json', 'html'],
-      reportsDirectory: './coverage',
-    },
-  },
   base: './',
 });

@@ -1,1 +1,1 @@
-# vite_template
+# RSS React course.
