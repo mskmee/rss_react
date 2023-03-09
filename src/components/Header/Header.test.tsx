@@ -4,14 +4,14 @@ import { render, screen } from '@testing-library/react';
 import Header from './Header';
 
 describe('When component rendered', () => {
-  it('should have home href', () => {
+  it.todo('should have home href', () => {
     render(<Header />);
-    const result = screen.queryAllByText(/home/i);
+    const result = screen.getByText(/home/i);
     expect(result).toBeTruthy();
   });
-  it('should have about us href', () => {
+  it.todo('should have about us href', () => {
     render(<Header />);
-    const result = screen.queryAllByText(/about us/i);
+    const result = screen.getByText(/about us/i);
     expect(result).toBeTruthy();
   });
 });

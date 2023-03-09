@@ -2,33 +2,34 @@ import React, { Component } from 'react';
 import styles from './Header.module.css';
 import logo from '../../assets/logo.png';
 import SearchBar from '../SearchBar/SearchBar';
+import { Link } from 'react-router-dom';
 
 export default class Header extends Component {
   render() {
     return (
       <header role="header" className={styles.header}>
-        <a href="/">
+        <Link to="/">
           <img className={styles.logo} src={logo} alt="logo" />
-        </a>
+        </Link>
         <SearchBar />
         <ul className={styles.links}>
           <li>
-            <a className={styles.link} href="/">
+            <Link className={styles.link} to="/">
               Home
               <div className={styles.underline}></div>
               <div aria-hidden className={styles.filled}>
                 Home
               </div>
-            </a>
+            </Link>
           </li>
           <li>
-            <a className={styles.link} href="/about">
+            <Link className={styles.link} to="/about">
               About us
               <div className={styles.underline}></div>
               <div aria-hidden className={styles.filled}>
                 About us
               </div>
-            </a>
+            </Link>
           </li>
         </ul>
       </header>

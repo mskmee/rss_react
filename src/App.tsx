@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 
 import Home from './pages/Home/Home';
@@ -9,7 +9,7 @@ import Header from './components/Header/Header';
 
 export function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
@@ -17,6 +17,6 @@ export function App() {
         <Route path="/404" element={<NotFoundPage />}></Route>
         <Route path="*" element={<Navigate to="/404" />}></Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
