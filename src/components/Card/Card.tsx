@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { IProduct as ICardProps } from 'api/types';
+import { IProduct as ICardProps } from '../../api/types';
 import styles from './Card.module.css';
 
 export default class Card extends Component<ICardProps> {

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getDataFromLocalStorage, setDataToLocalStorage } from './localstorageWorker';
+import { getDataFromLocalStorage, setDataToLocalStorage } from './localStorageWorker';
 
 describe('Save data', () =>
   it('should save data to local storage', () => {
