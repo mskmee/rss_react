@@ -12,7 +12,7 @@ export default class SearchBar extends Component<ISearchBarProps, ISearchBarStat
   constructor(props: ISearchBarProps) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = { searchValue: getDataFromLocalStorage() };
+    this.state = { searchValue: getDataFromLocalStorage() || '' };
   }
 
   componentDidMount() {

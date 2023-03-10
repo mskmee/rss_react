@@ -55,3 +55,7 @@ To run tests, run the following command
 ```
 npm run test
 ```
+
+Test coverage:
+
+![1678436977625](image/README/1678436977625.png)
