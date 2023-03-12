@@ -2,7 +2,7 @@
 
 **##** Deployment
 
-**-** [**React Components**](https://mskmee.github.io/rss_react/#/)
+**-** [**React Components**](https://react-module1.netlify.app/)
 
 **##** Run Locally
 
