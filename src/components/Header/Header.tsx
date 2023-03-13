@@ -16,6 +16,7 @@ export default class Header extends Component {
             <Route path="/" element={'Home'}></Route>
             <Route path="/about" element={'About us'}></Route>
             <Route path="/404" element={'404 page'}></Route>
+            <Route path="/form" element={'Form page'}></Route>
             <Route path="*" element={<Navigate to="/404" />}></Route>
           </Routes>
         </h1>
@@ -36,6 +37,15 @@ export default class Header extends Component {
               <div className={styles.underline}></div>
               <div aria-hidden className={styles.filled}>
                 About us
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link className={styles.link} to="/form">
+              Form
+              <div className={styles.underline}></div>
+              <div aria-hidden className={styles.filled}>
+                Form
               </div>
             </Link>
           </li>

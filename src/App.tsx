@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import AboutUs from './pages/AboutUs/AboutUs';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import Header from './components/Header/Header';
+import FormPage from './pages/FormPage/FormPage';
 
 export function App() {
   return (
@@ -15,6 +16,7 @@ export function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="/about" element={<AboutUs />}></Route>
         <Route path="/404" element={<NotFoundPage />}></Route>
+        <Route path="/form" element={<FormPage />}></Route>
         <Route path="*" element={<Navigate to="/404" />}></Route>
       </Routes>
     </BrowserRouter>
