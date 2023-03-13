@@ -60,3 +60,7 @@
 .link:hover .underline {
   transform: translateY(-1.5em);
 }
+
+.page {
+  color: #ffffff;
+}
