@@ -66,7 +66,15 @@ export default class FormComponent extends Component<IFormComponentProps, IFromS
     return (
       <form onSubmit={this.submitHandler} className={styles.form}>
         <label htmlFor="name">Name</label>
-        <input ref={this.nameInput} id="name" className={styles.input} required type="text" />
+        <input
+          minLength={3}
+          maxLength={25}
+          ref={this.nameInput}
+          id="name"
+          className={styles.input}
+          required
+          type="text"
+        />
         <hr></hr>
         <label htmlFor="date">Date</label>
         <input ref={this.dateInput} id="date" className={styles.input} required type="date" />
