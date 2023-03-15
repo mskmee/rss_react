@@ -16,6 +16,7 @@ export default class PopUp extends Component<IPopUpProps> {
         onClick={() => {
           this.props.onClose();
         }}
+        data-testid="background"
       >
         <h2
           className={styles.content}
