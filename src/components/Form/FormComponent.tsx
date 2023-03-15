@@ -1,23 +1,13 @@
 import React, { Component } from 'react';
 import styles from './FormComponent.module.css';
-
-export interface IFormComponentData {
-  name: string | undefined;
-  date: string | undefined;
-  car: string | undefined;
-  sex: string;
-  img: string;
-}
-
-interface IFromState {
-  cards: IFormComponentData[];
-}
+import { v4 as uuidv4 } from 'uuid';
+import { IFormComponentData } from '../../pages/FormPage/FormPage';
 
 interface IFormComponentProps {
-  props?: React.ReactNode;
+  onSubmit: (data: IFormComponentData) => void;
 }
 
-export default class FormComponent extends Component<IFormComponentProps, IFromState> {
+export default class FormComponent extends Component<IFormComponentProps> {
   fileInput: React.RefObject<HTMLInputElement>;
   nameInput: React.RefObject<HTMLInputElement>;
   dateInput: React.RefObject<HTMLInputElement>;
@@ -34,37 +24,43 @@ export default class FormComponent extends Component<IFormComponentProps, IFromS
     this.policyCheck = React.createRef();
     this.femaleInput = React.createRef();
     this.maleInput = React.createRef();
-    this.state = { cards: [] };
+    this.resetFormData = this.resetFormData.bind(this);
   }
   componentDidMount(): void {
     this.nameInput.current?.focus();
   }
 
-  componentDidUpdate(): void {
-    console.log(this.state);
+  resetFormData() {
+    this.nameInput.current!.value = '';
+    this.dateInput.current!.value = '';
+    this.fileInput.current!.value = '';
+    this.policyCheck.current!.checked = false;
+    this.maleInput.current!.checked = false;
+    this.femaleInput.current!.checked = false;
   }
 
   submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (this.fileInput.current?.files) {
-      const img = URL.createObjectURL(this.fileInput.current.files[0]);
-      const sex = this.maleInput.current?.checked ? 'male' : 'female';
-      const name = this.nameInput.current?.value;
-      const date = this.dateInput.current?.value;
-      const car = this.carsSelect.current?.value;
-      const card: IFormComponentData = {
-        img,
-        name,
-        sex,
-        date,
-        car,
-      };
-      this.setState((prevState) => ({ cards: [...prevState.cards, card] }));
-    }
+    const img = URL.createObjectURL(this.fileInput.current!.files![0]);
+    const sex = this.maleInput.current!.checked ? 'male' : 'female';
+    const name = this.nameInput.current!.value;
+    const date = this.dateInput.current!.value;
+    const car = this.carsSelect.current!.value;
+    const card: IFormComponentData = {
+      id: uuidv4(),
+      img,
+      name,
+      sex,
+      date,
+      car,
+    };
+    this.props.onSubmit(card);
+    this.resetFormData();
   };
+
   render() {
     return (
-      <form onSubmit={this.submitHandler} className={styles.form}>
+      <form data-testid="form" onSubmit={this.submitHandler} className={styles.form}>
         <label htmlFor="name">Name</label>
         <input
           minLength={3}

@@ -2,7 +2,7 @@ import React from 'react';
 import { cardsData } from '../../api/cardsData';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import Card from './Card';
+import Card from './ProductCard';
 
 describe('when rendered', () => {
   const productStab = cardsData.products[0];

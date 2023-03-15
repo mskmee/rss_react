@@ -1,12 +1,19 @@
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import FormComponent from './FormComponent';
 import userEvent from '@testing-library/user-event';
+import { IFormComponentData } from 'pages/FormPage/FormPage';
+
+let onSubmitMock: (data: IFormComponentData) => void;
+
+beforeEach(() => {
+  onSubmitMock = vi.fn();
+  render(<FormComponent onSubmit={onSubmitMock} />);
+});
 
 describe('When component rendered', () => {
   it('Check name input', async () => {
-    render(<FormComponent />);
     const user = userEvent.setup();
     const input = screen.getByLabelText(new RegExp('name', 'i')) as HTMLInputElement;
     await user.clear(input);
@@ -15,7 +22,6 @@ describe('When component rendered', () => {
   });
 
   it('Check date input', async () => {
-    render(<FormComponent />);
     const user = userEvent.setup();
     const input = screen.getByLabelText(new RegExp('date', 'i')) as HTMLInputElement;
     await user.clear(input);
@@ -24,7 +30,6 @@ describe('When component rendered', () => {
   });
 
   it('Check select input', async () => {
-    render(<FormComponent />);
     const user = userEvent.setup();
     const select = screen.getByLabelText(new RegExp('cars', 'i')) as HTMLSelectElement;
     await user.selectOptions(select, 'saab');
@@ -32,7 +37,6 @@ describe('When component rendered', () => {
   });
 
   it('Check checkbox input', async () => {
-    render(<FormComponent />);
     const user = userEvent.setup();
     const input = screen.getByRole('checkbox') as HTMLInputElement;
     await user.click(input);
@@ -40,7 +44,6 @@ describe('When component rendered', () => {
   });
 
   it('Check file input', async () => {
-    render(<FormComponent />);
     const user = userEvent.setup();
     const input = screen.getByLabelText('Choose images to upload') as HTMLInputElement;
     const fakeFile = new File(['hello'], 'hello.png', { type: 'image/png' });
@@ -53,13 +56,15 @@ describe('When component rendered', () => {
 describe('Check form after submit', () => {
   it('Should have valid form', () => {
     it('submitHandler adds a new card to state when form is submitted with valid inputs', () => {
-      const { getByLabelText, getByRole, getByText } = render(<FormComponent />);
+      const { getByLabelText, getByRole, getByText } = render(
+        <FormComponent onSubmit={onSubmitMock} />
+      );
       const nameInput = getByLabelText(/name/i);
       const dateInput = getByLabelText(/date/i);
       const carsSelect = getByLabelText(/cars/i);
       const policyCheck = getByLabelText(/policy/i);
       const maleRadio = getByLabelText(/male/i);
-      const fileInput = getByLabelText(/choose images to upload/i) as HTMLIN;
+      const fileInput = getByLabelText(/choose images to upload/i) as HTMLInputElement;
       const submitButton = getByRole('button', { name: /send/i });
       const fakeFile = new File(['hello'], 'hello.png', { type: 'image/png' });
 
@@ -80,6 +85,11 @@ describe('Check form after submit', () => {
       expect(getByLabelText(/policy/i)).toBeTruthy();
       expect(fileInput.files?.[0] ?? null).toStrictEqual(fakeFile);
       fireEvent.click(submitButton);
+      expect(onSubmitMock).toHaveBeenCalledWith(
+        expect.objectContaining({
+          preventDefault: expect.any(Function),
+        })
+      );
     });
   });
 });

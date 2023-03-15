@@ -1,5 +1,5 @@
 import { cardsData } from '../../api/cardsData';
-import Card from '../Card/Card';
+import Card from '../ProductCard/ProductCard';
 import React, { Component } from 'react';
 import styles from './CardsWrapper.module.css';
 
