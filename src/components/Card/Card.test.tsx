@@ -6,7 +6,7 @@ import Card from './Card';
 
 describe('when rendered', () => {
   const productStub = cardsData.products[0];
-  const { title, thumbnail, price, description, rating, brand, id } = productStub;
+  const { title, thumbnail, price, description, brand } = productStub;
   it('Should have product title', () => {
     render(<Card {...productStub} />);
     expect(screen.getByText(title)).toBeTruthy();
