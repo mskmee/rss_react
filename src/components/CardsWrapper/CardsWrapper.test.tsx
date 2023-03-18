@@ -6,6 +6,6 @@ import CardsWrapper from './CardsWrapper';
 describe('When rendered', () => {
   it('should have cards wrapper', () => {
     render(<CardsWrapper />);
-    expect(screen.getByText(new RegExp('cards', 'i'))).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /cards/i, level: 2 }));
   });
 });

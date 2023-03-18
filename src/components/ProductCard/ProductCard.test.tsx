@@ -5,81 +5,32 @@ import { describe, expect, it } from 'vitest';
 import Card from './ProductCard';
 
 describe('when rendered', () => {
-  const productStab = cardsData.products[0];
-  const { title, thumbnail, price, description, rating, brand, id } = productStab;
+  const productStub = cardsData.products[0];
+  const { title, thumbnail, price, description, brand } = productStub;
   it('Should have product title', () => {
-    render(
-      <Card
-        id={id}
-        title={title}
-        brand={brand}
-        description={description}
-        price={price}
-        rating={rating}
-        thumbnail={thumbnail}
-      />
-    );
-    expect(screen.getByText(new RegExp(title, 'i'))).toBeTruthy();
+    render(<Card {...productStub} />);
+    expect(screen.getByText(title)).toBeTruthy();
   });
 
   it('Should have product brand', () => {
-    render(
-      <Card
-        id={id}
-        title={title}
-        brand={brand}
-        description={description}
-        price={price}
-        rating={rating}
-        thumbnail={thumbnail}
-      />
-    );
-    expect(screen.queryAllByText(new RegExp(brand, 'i'))).toBeTruthy();
+    render(<Card {...productStub} />);
+    expect(screen.queryAllByText(brand)).toBeTruthy();
   });
 
   it('Should have product description', () => {
-    render(
-      <Card
-        id={id}
-        title={title}
-        brand={brand}
-        description={description}
-        price={price}
-        rating={rating}
-        thumbnail={thumbnail}
-      />
-    );
-    expect(screen.getByText(new RegExp(description, 'i'))).toBeTruthy();
+    render(<Card {...productStub} />);
+
+    expect(screen.getByText(description)).toBeTruthy();
   });
 
   it('Should have product price', () => {
-    render(
-      <Card
-        id={id}
-        title={title}
-        brand={brand}
-        description={description}
-        price={price}
-        rating={rating}
-        thumbnail={thumbnail}
-      />
-    );
-    expect(screen.getByText(new RegExp(price.toString(), 'i'))).toBeTruthy();
+    render(<Card {...productStub} />);
+    expect(screen.getByText(price.toString(), { exact: false })).toBeTruthy();
   });
 
   it('Should have product img', () => {
-    render(
-      <Card
-        id={id}
-        title={title}
-        brand={brand}
-        description={description}
-        price={price}
-        rating={rating}
-        thumbnail={thumbnail}
-      />
-    );
-    const img = screen.getByAltText(new RegExp(title, 'i')) as HTMLImageElement;
+    render(<Card {...productStub} />);
+    const img = screen.getByAltText(title) as HTMLImageElement;
     expect(img.src).toBe(thumbnail);
   });
 });
