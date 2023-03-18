@@ -6,6 +6,6 @@ import AboutUs from './AboutUs';
 describe('When rendered', () => {
   it('should have title "About us"', () => {
     render(<AboutUs />);
-    expect(screen.getByRole('heading', { name: new RegExp('about us', 'i'), level: 1 }));
+    expect(screen.getByRole('heading', { name: /about us/i, level: 1 }));
   });
 });
