@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
-import FormComponent from './FormComponent';
+import { FormComponent } from './FormComponent';
 import userEvent from '@testing-library/user-event';
 import { IFormComponentData } from 'pages/FormPage/FormPage';
 

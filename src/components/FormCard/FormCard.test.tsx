@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { IFormComponentData } from '../../pages/FormPage/FormPage';
 import { describe, expect, it } from 'vitest';
-import FormCard from './FormCard';
+import { FormCard } from './FormCard';
 
 const mockCardData: IFormComponentData = {
   car: 'volvo',

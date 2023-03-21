@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import SearchBar from './SearchBar';
+import { SearchBar } from './SearchBar';
 import userEvent from '@testing-library/user-event';
 import { setDataToLocalStorage } from '../../domain/localStorageWorker';
 

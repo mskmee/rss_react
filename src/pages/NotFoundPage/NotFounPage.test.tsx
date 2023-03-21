@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import NotFoundPage from './NotFoundPage';
+import { NotFoundPage } from './NotFoundPage';
 
 describe('When rendered', () => {
   it('should have title "This page is not found"', () => {

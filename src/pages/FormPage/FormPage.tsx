@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PopUp from '../../components/PopUp/PopUp';
-import FormComponent from '../../components/Form/FormComponent';
-import FormCard from '../../components/FormCard/FormCard';
+import React, { useState } from 'react';
+import { PopUp } from '../../components/PopUp';
+import { FormComponent } from '../../components/FormComponent';
+import { FormCard } from '../../components/FormCard';
 import styles from './FormPage.module.css';
 
 export interface IFormComponentData {
@@ -13,51 +13,33 @@ export interface IFormComponentData {
   img: string;
 }
 
-type Props = {
-  [key: string]: never;
-};
-
-interface IFormPageState {
-  cards: IFormComponentData[];
-  isPopUp: boolean;
-}
-export default class FormPage extends Component<Props, IFormPageState> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { cards: [], isPopUp: false };
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onPopUpClose = this.onPopUpClose.bind(this);
-  }
-
-  onPopUpClose() {
-    this.setState((prevState) => ({ ...prevState, isPopUp: false }));
-  }
-
-  onSubmit(data: IFormComponentData) {
-    this.setState((prevState) => ({ ...prevState, cards: [...prevState.cards, data] }));
-    this.setState((prevState) => ({ ...prevState, isPopUp: true }));
-  }
-  render() {
-    return (
-      <div>
-        <FormComponent onSubmit={this.onSubmit} />
-        <div className={styles.wrapper}>
-          {this.state.cards.map((data) => (
-            <FormCard
-              car={data.car}
-              date={data.date}
-              id={data.id}
-              img={data.img}
-              name={data.name}
-              sex={data.sex}
-              key={data.id}
-            />
-          ))}
-        </div>
-        {this.state.isPopUp && (
-          <PopUp textContent="Card successful create" onClose={this.onPopUpClose} />
-        )}
+export const FormPage = () => {
+  const [cards, setCards] = useState<IFormComponentData[]>([]);
+  const [isPopUp, setIsPopUp] = useState(false);
+  const onSubmit = (data: IFormComponentData) => {
+    setCards((prevState) => [...prevState, data]);
+    setIsPopUp(true);
+  };
+  const onPopUpClose = () => {
+    setIsPopUp(false);
+  };
+  return (
+    <div>
+      <FormComponent onSubmit={onSubmit} />
+      <div className={styles.wrapper}>
+        {cards.map((data) => (
+          <FormCard
+            car={data.car}
+            date={data.date}
+            id={data.id}
+            img={data.img}
+            name={data.name}
+            sex={data.sex}
+            key={data.id}
+          />
+        ))}
       </div>
-    );
-  }
-}
+      {isPopUp && <PopUp textContent="Card successful create" onClose={onPopUpClose} />}
+    </div>
+  );
+};

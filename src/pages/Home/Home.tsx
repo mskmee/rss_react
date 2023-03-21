@@ -1,8 +1,11 @@
-import CardsWrapper from '../../components/CardsWrapper/CardsWrapper';
-import React, { Component } from 'react';
+import { SearchBar } from '../../components/SearchBar';
+import { CardsWrapper } from '../../components/CardsWrapper';
 
-export default class Home extends Component {
-  render() {
-    return <CardsWrapper />;
-  }
-}
+export const Home = () => {
+  return (
+    <>
+      <SearchBar />
+      <CardsWrapper />
+    </>
+  );
+};

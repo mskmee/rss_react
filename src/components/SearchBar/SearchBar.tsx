@@ -1,47 +1,29 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getDataFromLocalStorage, setDataToLocalStorage } from '../../domain/localStorageWorker';
 import styles from './SearchBar.module.css';
 
-interface ISearchBarState {
-  searchValue: string;
-}
-interface ISearchBarProps {
-  value?: string;
-}
-export default class SearchBar extends Component<ISearchBarProps, ISearchBarState> {
-  constructor(props: ISearchBarProps) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = { searchValue: getDataFromLocalStorage() || '' };
-  }
+export const SearchBar = () => {
+  const [searchValue, setSearchValue] = useState<string>(getDataFromLocalStorage() || '');
 
-  componentDidMount() {
-    window.addEventListener('beforeunload', this.handleBeforeUnload);
-  }
+  useEffect(() => {
+    const saveOnReload = () => {
+      setDataToLocalStorage(searchValue);
+    };
+    window.addEventListener('beforeunload', saveOnReload);
+    return () => {
+      setDataToLocalStorage(searchValue);
+      window.removeEventListener('beforeunload', saveOnReload);
+    };
+  }, [searchValue]);
 
-  componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.handleBeforeUnload);
-  }
-
-  handleBeforeUnload = () => {
-    setDataToLocalStorage(this.state.searchValue);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
   };
 
-  handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ searchValue: e.target.value });
-  }
-
-  render() {
-    return (
-      <div className={styles.wrapper}>
-        <input
-          className={styles.input}
-          type="text"
-          value={this.state.searchValue}
-          onChange={this.handleChange}
-        />
-        <div className={styles.icon}></div>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={styles.wrapper}>
+      <input className={styles.input} type="text" value={searchValue} onChange={handleChange} />
+      <div className={styles.icon}></div>
+    </div>
+  );
+};
