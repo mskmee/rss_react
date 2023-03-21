@@ -10,16 +10,7 @@ export default class CardsWrapper extends Component {
         <h2 className={styles.title}>Cards: </h2>
         <div className={styles.wrapper}>
           {cardsData.products.map((data) => (
-            <Card
-              key={data.id}
-              title={data.title}
-              price={data.price}
-              brand={data.brand}
-              rating={data.rating}
-              description={data.description}
-              id={data.id}
-              thumbnail={data.thumbnail}
-            />
+            <Card key={data.id} {...data} />
           ))}
         </div>
       </>

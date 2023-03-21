@@ -15,7 +15,7 @@ beforeEach(() => {
 describe('When component rendered', () => {
   it('Check name input', async () => {
     const user = userEvent.setup();
-    const input = screen.getByLabelText(new RegExp('name', 'i')) as HTMLInputElement;
+    const input = screen.getByLabelText(/name/i) as HTMLInputElement;
     await user.clear(input);
     await user.type(input, '42');
     expect(input.value).toBe('42');
@@ -23,7 +23,7 @@ describe('When component rendered', () => {
 
   it('Check date input', async () => {
     const user = userEvent.setup();
-    const input = screen.getByLabelText(new RegExp('date', 'i')) as HTMLInputElement;
+    const input = screen.getByLabelText(/date/i) as HTMLInputElement;
     await user.clear(input);
     await user.type(input, '2018-07-22');
     expect(input.value).toBe('2018-07-22');
@@ -31,7 +31,7 @@ describe('When component rendered', () => {
 
   it('Check select input', async () => {
     const user = userEvent.setup();
-    const select = screen.getByLabelText(new RegExp('cars', 'i')) as HTMLSelectElement;
+    const select = screen.getByLabelText(/car/i) as HTMLSelectElement;
     await user.selectOptions(select, 'saab');
     expect(select.value).toBe('saab');
   });
@@ -45,11 +45,12 @@ describe('When component rendered', () => {
 
   it('Check file input', async () => {
     const user = userEvent.setup();
-    const input = screen.getByLabelText('Choose images to upload') as HTMLInputElement;
+    const input = screen.getByLabelText('Choose photo image to upload') as HTMLInputElement;
     const fakeFile = new File(['hello'], 'hello.png', { type: 'image/png' });
     await user.upload(input, fakeFile);
+    const inputFile = input.files?.[0];
     expect(input.files).toHaveLength(1);
-    expect(input.files?.[0] ?? null).toStrictEqual(fakeFile);
+    expect(inputFile).toStrictEqual(fakeFile);
   });
 });
 
@@ -67,6 +68,7 @@ describe('Check form after submit', () => {
       const fileInput = getByLabelText(/choose images to upload/i) as HTMLInputElement;
       const submitButton = getByRole('button', { name: /send/i });
       const fakeFile = new File(['hello'], 'hello.png', { type: 'image/png' });
+      const inputFile = fileInput.files?.[0];
 
       fireEvent.change(nameInput, { target: { value: 'John Doe' } });
       fireEvent.change(dateInput, { target: { value: '2022-03-14' } });
@@ -83,7 +85,7 @@ describe('Check form after submit', () => {
       expect(getByText(/volvo/i)).toBeTruthy();
       expect(getByText(/male/i)).toBeTruthy();
       expect(getByLabelText(/policy/i)).toBeTruthy();
-      expect(fileInput.files?.[0] ?? null).toStrictEqual(fakeFile);
+      expect(inputFile).toStrictEqual(fakeFile);
       fireEvent.click(submitButton);
       expect(onSubmitMock).toHaveBeenCalledWith(
         expect.objectContaining({

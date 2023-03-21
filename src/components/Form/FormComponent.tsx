@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import styles from './FormComponent.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { IFormComponentData } from '../../pages/FormPage/FormPage';
+import { checkIsDateValid, checkIsFileValid } from '../../domain/inputsValidators';
 
 interface IFormComponentProps {
   onSubmit: (data: IFormComponentData) => void;
 }
 
-export default class FormComponent extends Component<IFormComponentProps> {
+interface IFormComponentState {
+  isDateValid: boolean;
+  isFileValid: boolean;
+}
+
+export default class FormComponent extends Component<IFormComponentProps, IFormComponentState> {
   fileInput: React.RefObject<HTMLInputElement>;
   nameInput: React.RefObject<HTMLInputElement>;
   dateInput: React.RefObject<HTMLInputElement>;
@@ -25,6 +31,7 @@ export default class FormComponent extends Component<IFormComponentProps> {
     this.femaleInput = React.createRef();
     this.maleInput = React.createRef();
     this.resetFormData = this.resetFormData.bind(this);
+    this.state = { isDateValid: true, isFileValid: true };
   }
   componentDidMount(): void {
     this.nameInput.current?.focus();
@@ -37,15 +44,27 @@ export default class FormComponent extends Component<IFormComponentProps> {
     this.policyCheck.current!.checked = false;
     this.maleInput.current!.checked = false;
     this.femaleInput.current!.checked = false;
+    this.setState({ isDateValid: true, isFileValid: true });
+  }
+
+  checkInputValues(date: string, fileName: string) {
+    const isDateValid = checkIsDateValid(date);
+    const isFileValid = checkIsFileValid(fileName);
+    console.log('date', isDateValid, 'file', isFileValid);
+    this.setState({ isDateValid, isFileValid });
+    return isDateValid && isFileValid;
   }
 
   submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const rowDate = this.dateInput.current!.value;
     const img = URL.createObjectURL(this.fileInput.current!.files![0]);
+    const isValid = this.checkInputValues(rowDate, this.fileInput.current!.files![0].name);
+    if (!isValid) return;
     const sex = this.maleInput.current!.checked ? 'male' : 'female';
     const name = this.nameInput.current!.value;
-    const date = this.dateInput.current!.value;
     const car = this.carsSelect.current!.value;
+    const date = rowDate.split('-').reverse().join('-');
     const card: IFormComponentData = {
       id: uuidv4(),
       img,
@@ -72,10 +91,13 @@ export default class FormComponent extends Component<IFormComponentProps> {
           type="text"
         />
         <hr></hr>
-        <label htmlFor="date">Date</label>
+        <label htmlFor="date">Birth Date</label>
         <input ref={this.dateInput} id="date" className={styles.input} required type="date" />
+        {!this.state.isDateValid && (
+          <p className={styles.error}>Date should be more than 1900 year and less than tomorrow</p>
+        )}
         <hr></hr>
-        <label htmlFor="cars">Cars</label>
+        <label htmlFor="cars">Car</label>
         <select ref={this.carsSelect} className={styles.input} required id="cars" name="cars">
           <option value="volvo">Volvo</option>
           <option value="saab">Saab</option>
@@ -97,7 +119,7 @@ export default class FormComponent extends Component<IFormComponentProps> {
           <input ref={this.femaleInput} name="sex" value="female" required type="radio" />
         </div>
         <hr></hr>
-        <label htmlFor="avatar">Choose images to upload</label>
+        <label htmlFor="avatar">Choose photo image to upload</label>
         <input
           id="avatar"
           ref={this.fileInput}
@@ -106,6 +128,11 @@ export default class FormComponent extends Component<IFormComponentProps> {
           type="file"
           accept="image/*"
         />
+        {!this.state.isFileValid && (
+          <p className={styles.error}>
+            Check file extension. We support only jpg, jpeg, gif and svg img files
+          </p>
+        )}
         <button type="submit">Send</button>
       </form>
     );

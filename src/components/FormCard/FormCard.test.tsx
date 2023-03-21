@@ -15,11 +15,11 @@ describe('After mount', () => {
   it('Card data should render with properties', () => {
     const { car, date, id, img, name, sex } = mockCardData;
     render(<FormCard car={car} date={date} id={id} img={img} name={name} sex={sex} />);
-    expect(screen.getByText(new RegExp(sex, 'i'))).toBeTruthy();
-    expect(screen.getByText(new RegExp(car, 'i'))).toBeTruthy();
-    expect(screen.getByText(new RegExp(date, 'i'))).toBeTruthy();
-    expect(screen.getByText(new RegExp(name, 'i'))).toBeTruthy();
-    const image = screen.getByAltText(new RegExp(name, 'i')) as HTMLImageElement;
+    expect(screen.getByText(sex)).toBeTruthy();
+    expect(screen.getByText(car)).toBeTruthy();
+    expect(screen.getByText(date)).toBeTruthy();
+    expect(screen.getByText(name)).toBeTruthy();
+    const image = screen.getByAltText(name) as HTMLImageElement;
     expect(image.src).toBe(img);
   });
 });

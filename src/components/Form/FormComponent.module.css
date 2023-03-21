@@ -28,6 +28,12 @@ button {
   opacity: 0.9;
 }
 
+.error {
+  font-weight: 300;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: red;
+}
 button:hover {
   opacity: 1;
 }
