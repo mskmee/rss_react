@@ -1,8 +1,16 @@
+import { pageAnimation } from '../../animates/animates';
+import { motion } from 'framer-motion';
 import styles from './AboutUs.module.css';
 
 export const AboutUs = () => {
   return (
-    <div className={styles.wrapper}>
+    <motion.div
+      className={styles.wrapper}
+      exit="exit"
+      variants={pageAnimation}
+      initial="hidden"
+      animate="show"
+    >
       <h2 className={styles.title}>About Us</h2>
       <p className={styles.text}>
         Welcome to Rick and Morty Characters, a website dedicated to providing information about the
@@ -30,6 +38,6 @@ export const AboutUs = () => {
           me.
         </a>
       </p>
-    </div>
+    </motion.div>
   );
 };

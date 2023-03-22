@@ -16,6 +16,7 @@
   "dependencies": {
     "@types/uuidv4": "^5.0.0",
     "classnames": "^2.3.2",
+    "framer-motion": "^10.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",

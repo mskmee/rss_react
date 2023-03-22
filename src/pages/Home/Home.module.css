@@ -1,0 +1,48 @@
+.container {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.img {
+  height: 70vh;
+  width: 30vw;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.title {
+  text-align: center;
+  font-family: 'Get Schwifty', sans-serif;
+  color: #49c5b6;
+  font-size: 1.7rem;
+  text-shadow: 1px 1px 1px #ecd06f, 0 2px 2px #ecd06f, -2px 0 2px #ecd06f, 0 -2px 2px #ecd06f;
+  padding-bottom: 5rem;
+}
+
+.text {
+  color: #ffffff;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.2rem;
+  background-color: #11282e;
+  padding: 1rem;
+  border-radius: 5px;
+  transition: color 0.3s ease;
+  text-align: center;
+}
+
+.link:hover {
+  color: #ecd06f;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

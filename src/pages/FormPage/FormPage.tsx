@@ -3,6 +3,8 @@ import { PopUp } from '../../components/PopUp';
 import { FormComponent } from '../../components/FormComponent';
 import { FormCard } from '../../components/FormCard';
 import styles from './FormPage.module.css';
+import { motion } from 'framer-motion';
+import { pageAnimation } from '../../animates/animates';
 
 export interface IFormComponentData {
   id: string;
@@ -24,7 +26,7 @@ export const FormPage = () => {
     setIsPopUp(false);
   };
   return (
-    <div>
+    <motion.div exit="exit" variants={pageAnimation} initial="hidden" animate="show">
       <FormComponent onSubmit={onSubmit} />
       <div className={styles.wrapper}>
         {cards.map((data) => (
@@ -40,6 +42,6 @@ export const FormPage = () => {
         ))}
       </div>
       {isPopUp && <PopUp textContent="Card successful create" onClose={onPopUpClose} />}
-    </div>
+    </motion.div>
   );
 };
