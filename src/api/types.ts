@@ -1,17 +1,24 @@
-export interface IProduct {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  rating: number;
-  brand: string;
-  thumbnail: string;
-  images?: string[];
-  category?: string;
-  stock?: number;
-  discountPercentage?: number;
+interface IOrigin {
+  name: string;
+  url: string;
 }
 
-export interface IDataResponse {
-  products: IProduct[];
+interface ILocation {
+  name: string;
+  url: string;
+}
+
+export interface ICardElement {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  origin: IOrigin;
+  location: ILocation;
+  image: string;
+  episode: string[];
+  url: string;
+  created: string;
 }
