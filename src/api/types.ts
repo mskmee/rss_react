@@ -8,6 +8,13 @@ interface ILocation {
   url: string;
 }
 
+interface ICharacterInfo {
+  count: number;
+  pages: number;
+  next: string;
+  prev: string;
+}
+
 export interface ICardElement {
   id: number;
   name: string;
@@ -21,4 +28,9 @@ export interface ICardElement {
   episode: string[];
   url: string;
   created: string;
+}
+
+export interface ICharacterResponse {
+  info: ICharacterInfo;
+  results: ICardElement[];
 }

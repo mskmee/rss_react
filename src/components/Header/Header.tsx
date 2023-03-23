@@ -29,37 +29,21 @@ export const Header = () => {
         <li>
           <Link className={styles.link} to="/">
             Home
-            <div className={styles.underline}></div>
-            <div aria-hidden className={styles.filled}>
-              Home
-            </div>
           </Link>
         </li>
         <li>
           <Link className={styles.link} to="/cards">
-            Cards
-            <div className={styles.underline}></div>
-            <div aria-hidden className={styles.filled}>
-              Cards
-            </div>
+            Characters
           </Link>
         </li>
         <li>
           <Link className={styles.link} to="/about">
             About us
-            <div className={styles.underline}></div>
-            <div aria-hidden className={styles.filled}>
-              About us
-            </div>
           </Link>
         </li>
         <li>
           <Link className={styles.link} to="/form">
             Form
-            <div className={styles.underline}></div>
-            <div aria-hidden className={styles.filled}>
-              Form
-            </div>
           </Link>
         </li>
       </ul>

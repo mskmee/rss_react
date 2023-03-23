@@ -1,9 +1,13 @@
 .card {
   display: flex;
   flex-direction: column;
-  background-color: #ccc;
+  background-color: #11282e;
   padding: 1rem;
   border-radius: 5px;
+}
+
+.card:hover {
+  cursor: pointer;
 }
 
 .img-wrapper {
@@ -13,12 +17,14 @@
 .img {
   width: 200px;
   height: 200px;
+  border-radius: 5px;
 }
 
 .title {
   align-self: center;
   font-weight: bold;
   font-size: 1.3rem;
+  color: #ecd06f;
 }
 
 .description {
