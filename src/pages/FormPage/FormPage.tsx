@@ -3,7 +3,7 @@ import { PopUp } from '../../components/PopUp';
 import { FormComponent } from '../../components/FormComponent';
 import { FormCard } from '../../components/FormCard';
 import styles from './FormPage.module.css';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { pageAnimation } from '../../animates/animates';
 
 export interface IFormComponentData {
@@ -41,7 +41,9 @@ export const FormPage = () => {
           />
         ))}
       </div>
-      {isPopUp && <PopUp textContent="Card successful create" onClose={onPopUpClose} />}
+      <AnimatePresence mode="wait">
+        {isPopUp && <PopUp textContent="Card successful create" onClose={onPopUpClose} />}
+      </AnimatePresence>
     </motion.div>
   );
 };

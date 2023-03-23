@@ -29,5 +29,6 @@ export const lineAnimation = {
 
 export const fade = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { easy: 'easyOut', duration: 2 } },
+  show: { opacity: 1, transition: { when: 'beforeChildren', easy: 'easyOut', duration: 0.5 } },
+  exit: { opacity: 0 },
 };

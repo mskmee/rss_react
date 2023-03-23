@@ -1,30 +1,41 @@
+import { fade } from '../../animates/animates';
+import { motion } from 'framer-motion';
 import styles from './PopUp.module.css';
 
 interface IPopUpProps {
-  textContent: string;
   onClose: () => void;
+  textContent?: string;
+  children?: React.ReactNode;
 }
 
-export const PopUp = ({ textContent, onClose }: IPopUpProps) => {
+export const PopUp = ({ textContent, onClose, children }: IPopUpProps) => {
   return (
-    <div
+    <motion.div
+      variants={fade}
+      exit="exit"
       className={styles.wrapper}
       onClick={() => {
         onClose();
       }}
       data-testid="background"
     >
-      <h2
+      <div
         className={styles.content}
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
-        {textContent}
-        <button className={styles.button} type="button" onClick={() => onClose()}>
-          Ok
-        </button>
-      </h2>
-    </div>
+        {children ? (
+          children
+        ) : (
+          <>
+            <h2>{textContent}</h2>
+            <button className={styles.button} type="button" onClick={() => onClose()}>
+              Ok
+            </button>
+          </>
+        )}
+      </div>
+    </motion.div>
   );
 };
