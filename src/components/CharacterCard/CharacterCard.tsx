@@ -4,6 +4,7 @@ import { ICardElement as ICardProps } from '../../api/types';
 import { DetailedCard } from '../../components/DetailedCard';
 import styles from './CharacterCard.module.css';
 import { AnimatePresence, motion } from 'framer-motion';
+import { fade } from '../../animates/animates';
 
 export const CharacterCard = ({
   id,
@@ -38,7 +39,13 @@ export const CharacterCard = ({
     setIsPopUp(false);
   };
   return (
-    <motion.div className={styles.container}>
+    <motion.div
+      initial="hidden"
+      animate="show"
+      exit="exit"
+      variants={fade}
+      className={styles.container}
+    >
       <div className={styles.card} onClick={() => setIsPopUp(true)}>
         <div className={styles.imgWrapper}>
           <img className={styles.img} src={image} alt={name} />

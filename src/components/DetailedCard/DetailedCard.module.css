@@ -3,6 +3,11 @@
   color: #fff;
 }
 
+.img_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .img {
   border-radius: 5px;
 }
@@ -14,4 +19,17 @@
 }
 .info-name {
   font-weight: bold;
+}
+
+.bio-wrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+}
+
+.bio {
+  padding: 10px;
+  background-color: #11282e;
+  border: transparent solid 1px;
+  border-radius: 5px;
 }

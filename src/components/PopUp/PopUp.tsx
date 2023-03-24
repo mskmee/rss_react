@@ -1,4 +1,4 @@
-import { fade, pageAnimation, photoAnimation } from '../../animates/animates';
+import { fade, pageAnimation } from '../../animates/animates';
 import { motion } from 'framer-motion';
 import styles from './PopUp.module.css';
 

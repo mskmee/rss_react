@@ -32,3 +32,8 @@ export const fade = {
   show: { opacity: 1, transition: { when: 'beforeChildren', easy: 'easyOut', duration: 0.5 } },
   exit: { opacity: 0 },
 };
+
+export const rotate = {
+  hidden: { rotate: 0, scale: 1 },
+  show: { rotate: 360, scale: 2, transition: { repeat: Infinity, duration: 2 } },
+};

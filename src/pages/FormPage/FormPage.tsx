@@ -30,15 +30,7 @@ export const FormPage = () => {
       <FormComponent onSubmit={onSubmit} />
       <div className={styles.wrapper}>
         {cards.map((data) => (
-          <FormCard
-            car={data.car}
-            date={data.date}
-            id={data.id}
-            img={data.img}
-            name={data.name}
-            sex={data.sex}
-            key={data.id}
-          />
+          <FormCard {...data} key={data.id} />
         ))}
       </div>
       <AnimatePresence mode="wait">
