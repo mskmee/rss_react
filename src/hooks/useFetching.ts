@@ -11,7 +11,7 @@ export const useFetching = (
       await callback();
       setIsAlert('');
     } catch (error) {
-      setIsAlert(`Oops we got error. Error: ${error}`);
+      setIsAlert(`Oops we got error. ${error}`);
     } finally {
       setIsLoading(false);
     }
