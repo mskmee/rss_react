@@ -42,7 +42,11 @@ export const FormPage = () => {
         ))}
       </div>
       <AnimatePresence mode="wait">
-        {isPopUp && <PopUp textContent="Card successful create" onClose={onPopUpClose} />}
+        {isPopUp && (
+          <PopUp onClose={onPopUpClose}>
+            <h2>Card successful create</h2>
+          </PopUp>
+        )}
       </AnimatePresence>
     </motion.div>
   );

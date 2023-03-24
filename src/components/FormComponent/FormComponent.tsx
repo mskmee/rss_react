@@ -121,7 +121,9 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
           Check file extension. We support only jpg, jpeg, gif and svg img files
         </p>
       )}
-      <button type="submit">Send</button>
+      <button className={styles.button} type="submit">
+        Send
+      </button>
     </form>
   );
 };

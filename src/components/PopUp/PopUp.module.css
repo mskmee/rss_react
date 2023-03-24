@@ -1,25 +1,25 @@
 .wrapper {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: 5px;
+  backdrop-filter: blur(5px);
   z-index: 10;
 }
 
 .content {
+  position: relative;
   display: flex;
-  position: absolute;
-  background-color: #fff;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background: linear-gradient(#224e4e, #4a392d);
   border: 1px solid transparent;
   border-radius: 5px;
   width: 50vw;
-  height: 50vh;
+  min-height: 50vh;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -30,4 +30,29 @@
   width: 50%;
   border: 1px solid transparent;
   border-radius: 5px;
+  background-color: #ecd06f;
+  margin-bottom: 1rem;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #49c5b6;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 2%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  color: #fff;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+}
+
+.close:hover {
+  scale: 1.2;
 }

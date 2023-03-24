@@ -1,0 +1,17 @@
+.container {
+  margin: 2rem;
+  color: #fff;
+}
+
+.img {
+  border-radius: 5px;
+}
+
+.info-row {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 0.4fr 1fr;
+}
+.info-name {
+  font-weight: bold;
+}

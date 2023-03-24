@@ -4,6 +4,8 @@ import { useFetching } from '../../hooks/useFetching';
 import { CharacterService } from '../../api/CharacterService';
 import { ICardElement } from 'api/types';
 import { CharacterCard } from '../../components/CharacterCard';
+import { AnimatePresence, motion } from 'framer-motion';
+import { fade } from '../../animates/animates';
 
 interface ICardsWrapperProps {
   query: string;
@@ -31,7 +33,7 @@ export const CardsWrapper = ({ query }: ICardsWrapperProps) => {
       {!isError && !isLoading && (
         <div className={styles.wrapper}>
           {responseData.map((card) => (
-            <CharacterCard key={card.id} {...card} />
+            <CharacterCard {...card} key={card.id} />
           ))}
         </div>
       )}
