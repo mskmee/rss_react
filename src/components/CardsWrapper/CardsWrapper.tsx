@@ -23,7 +23,7 @@ export const CardsWrapper = ({ query }: ICardsWrapperProps) => {
   useEffect(() => {
     fetchCharacters();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, query]);
+  }, [query]);
 
   return (
     <>
