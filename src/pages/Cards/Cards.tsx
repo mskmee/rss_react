@@ -15,14 +15,13 @@ export const Cards = () => {
     };
     window.addEventListener('beforeunload', saveOnReload);
     return () => {
-      console.log(searchValue);
-      setDataToLocalStorage(searchValue);
       window.removeEventListener('beforeunload', saveOnReload);
     };
   }, [searchValue]);
 
   const submitHandler = () => {
     setQuerySearchValue(searchValue);
+    setDataToLocalStorage(searchValue);
   };
 
   return (

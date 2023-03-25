@@ -4,32 +4,50 @@ import { describe, expect, it } from 'vitest';
 import { CharacterCard } from './CharacterCard';
 
 describe('when rendered', () => {
-  const productStub = { id: 2, name: 'Alex' };
+  const productStub = {
+    id: 1,
+    name: 'Rick Sanchez',
+    status: 'Alive',
+    species: 'Human',
+    type: '',
+    gender: 'Male',
+    origin: {
+      name: 'Earth (C-137)',
+      url: 'https://rickandmortyapi.com/api/location/1',
+    },
+    location: {
+      name: 'Citadel of Ricks',
+      url: 'https://rickandmortyapi.com/api/location/3',
+    },
+    image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+    episode: ['https://rickandmortyapi.com/api/episode/1'],
+    url: 'https://rickandmortyapi.com/api/character/1',
+    created: '2017-11-04T18:48:46.250Z',
+  };
 
-  it.todo('Should have product title', () => {
+  it('Should have card name', () => {
     render(<CharacterCard {...productStub} />);
-    expect(screen.getByText(title)).toBeTruthy();
+    expect(screen.getByText(productStub.name)).toBeTruthy();
   });
 
-  it.todo('Should have product brand', () => {
+  it('Should have card gender', () => {
     render(<CharacterCard {...productStub} />);
-    expect(screen.queryAllByText(brand)).toBeTruthy();
+    expect(screen.queryAllByText(productStub.gender)).toBeTruthy();
   });
 
-  it.todo('Should have product description', () => {
+  it.todo('Should have card status', () => {
     render(<CharacterCard {...productStub} />);
-
-    expect(screen.getByText(description)).toBeTruthy();
+    expect(screen.getByText(productStub.status)).toBeTruthy();
   });
 
-  it.todo('Should have product price', () => {
+  it.todo('Should have card species', () => {
     render(<CharacterCard {...productStub} />);
-    expect(screen.getByText(price.toString(), { exact: false })).toBeTruthy();
+    expect(screen.getByText(productStub.species)).toBeTruthy();
   });
 
   it.todo('Should have product img', () => {
     render(<CharacterCard {...productStub} />);
-    const img = screen.getByAltText(title) as HTMLImageElement;
-    expect(img.src).toBe(thumbnail);
+    const img = screen.getByAltText(productStub.name) as HTMLImageElement;
+    expect(img.src).toBe(productStub.image);
   });
 });

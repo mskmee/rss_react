@@ -22,7 +22,7 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
 
   useEffect(() => {
     nameInput.current?.focus();
-  }, [nameInput]);
+  }, []);
 
   const checkInputValues = (date: string, fileName: string) => {
     const isDate = checkIsDateValid(date);

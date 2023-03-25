@@ -5,7 +5,7 @@ import { CardsWrapper } from './CardsWrapper';
 
 describe('When rendered', () => {
   it('should have cards wrapper', () => {
-    render(<CardsWrapper />);
+    render(<CardsWrapper query="test" />);
     expect(screen.getByRole('heading', { name: /cards/i, level: 2 }));
   });
 });

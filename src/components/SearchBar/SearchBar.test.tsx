@@ -1,23 +1,22 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { SearchBar } from './SearchBar';
-import userEvent from '@testing-library/user-event';
-import { setDataToLocalStorage } from '../../domain/localStorageWorker';
 
-vi.mock('../../domain/localStorageWorker');
+const mockHandler = vi.fn();
+const mockQuery = 'find';
+const mockSetQuery = vi.fn();
+
 describe('When component render', () => {
-  it.todo('Check user input', async () => {
-    const user = userEvent.setup();
-    render(<SearchBar />);
+  it('Check user input', () => {
+    render(<SearchBar query={mockQuery} setQuery={mockSetQuery} submitHandler={mockHandler} />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
-    await user.clear(input);
-    await user.type(input, '42');
-    expect(input.value).toBe('42');
+    expect(input.value).toBe(mockQuery);
   });
-  it.todo('setDataToLocalStorage is called on beforeunload', async () => {
-    render(<SearchBar />);
-    window.dispatchEvent(new Event('beforeunload'));
-    expect(setDataToLocalStorage).toBeCalled();
+  it('setDataToLocalStorage is called on beforeunload', async () => {
+    render(<SearchBar query={mockQuery} setQuery={mockSetQuery} submitHandler={mockHandler} />);
+    const submit = screen.getByRole('button');
+    fireEvent.click(submit);
+    expect(mockHandler).toBeCalled();
   });
 });

@@ -1,5 +1,14 @@
-import { describe, it } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import { ErrorComponent } from './ErrorComponent';
 
-describe('Check render', () => {
-  it.todo('test');
+describe('When rendered', () => {
+  it('Should have error heading', () => {
+    const testText = 'test';
+    render(<ErrorComponent errorText={testText} />);
+    const errorText = screen.getByRole('heading', {
+      name: testText,
+    });
+    expect(errorText).toBeTruthy();
+  });
 });
