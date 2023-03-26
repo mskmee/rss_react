@@ -43,15 +43,7 @@ export default class FormPage extends Component<Props, IFormPageState> {
         <FormComponent onSubmit={this.onSubmit} />
         <div className={styles.wrapper}>
           {this.state.cards.map((data) => (
-            <FormCard
-              car={data.car}
-              date={data.date}
-              id={data.id}
-              img={data.img}
-              name={data.name}
-              sex={data.sex}
-              key={data.id}
-            />
+            <FormCard key={data.id} {...data} />
           ))}
         </div>
         {this.state.isPopUp && (
