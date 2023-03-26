@@ -86,8 +86,7 @@ export default class FormComponent extends Component<IFormComponentProps, IFormC
         <input ref={this.nameInput} id="name" className={styles.input} required type="text" />
         {!this.state.isNameValid && (
           <p className={styles.error}>
-            Name must start from upper char and has length from 3 chars to 15 chars. Use only a-z
-            chars.
+            Name must start from upper char and has length from 3 to 15 chars. Use only a-z chars.
           </p>
         )}
         <hr></hr>
