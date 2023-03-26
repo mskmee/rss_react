@@ -17,6 +17,7 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
   const fileInput = useRef<null | HTMLInputElement>(null);
   const carsSelect = useRef<null | HTMLSelectElement>(null);
   const policyCheck = useRef<null | HTMLInputElement>(null);
+  const form = useRef<null | HTMLFormElement>(null);
   const [isDateValid, setIsDateValid] = useState(true);
   const [isFileValid, setIsFileValid] = useState(true);
 
@@ -39,8 +40,6 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
     policyCheck.current!.checked = false;
     maleInput.current!.checked = false;
     femaleInput.current!.checked = false;
-    setIsDateValid(true);
-    setIsFileValid(true);
   };
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -62,10 +61,12 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
       car,
     };
     onSubmit(card);
-    resetFormData();
+    setIsFileValid(true);
+    setIsDateValid(true);
+    form.current?.reset();
   };
   return (
-    <form data-testid="form" onSubmit={submitHandler} className={styles.form}>
+    <form ref={form} data-testid="form" onSubmit={submitHandler} className={styles.form}>
       <label htmlFor="name">Name</label>
       <input
         value={name}
