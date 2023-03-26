@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ccc;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.img-wrapper {
+  align-self: center;
+}
+
+.img {
+  width: 200px;
+  height: 200px;
+}
+
+.title {
+  align-self: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.description {
+  align-self: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 300px;
+  white-space: nowrap;
+}
