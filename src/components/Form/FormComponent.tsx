@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import styles from './FormComponent.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { IFormComponentData } from '../../pages/FormPage/FormPage';
-import { checkIsDateValid, checkIsFileValid } from '../../domain/inputsValidators';
+import {
+  checkIsDateValid,
+  checkIsFileValid,
+  checkIsNameValid,
+} from '../../domain/inputsValidators';
 
 interface IFormComponentProps {
   onSubmit: (data: IFormComponentData) => void;
@@ -11,6 +15,7 @@ interface IFormComponentProps {
 interface IFormComponentState {
   isDateValid: boolean;
   isFileValid: boolean;
+  isNameValid: boolean;
 }
 
 export default class FormComponent extends Component<IFormComponentProps, IFormComponentState> {
@@ -21,6 +26,8 @@ export default class FormComponent extends Component<IFormComponentProps, IFormC
   policyCheck: React.RefObject<HTMLInputElement>;
   femaleInput: React.RefObject<HTMLInputElement>;
   maleInput: React.RefObject<HTMLInputElement>;
+  form: React.RefObject<HTMLFormElement>;
+
   constructor(props: IFormComponentProps) {
     super(props);
     this.fileInput = React.createRef();
@@ -30,39 +37,29 @@ export default class FormComponent extends Component<IFormComponentProps, IFormC
     this.policyCheck = React.createRef();
     this.femaleInput = React.createRef();
     this.maleInput = React.createRef();
-    this.resetFormData = this.resetFormData.bind(this);
-    this.state = { isDateValid: true, isFileValid: true };
+    this.form = React.createRef();
+    this.state = { isDateValid: true, isFileValid: true, isNameValid: true };
   }
   componentDidMount(): void {
     this.nameInput.current?.focus();
   }
 
-  resetFormData() {
-    this.nameInput.current!.value = '';
-    this.dateInput.current!.value = '';
-    this.fileInput.current!.value = '';
-    this.policyCheck.current!.checked = false;
-    this.maleInput.current!.checked = false;
-    this.femaleInput.current!.checked = false;
-    this.setState({ isDateValid: true, isFileValid: true });
-  }
-
-  checkInputValues(date: string, fileName: string) {
+  checkInputValues(date: string, fileName: string, name: string) {
     const isDateValid = checkIsDateValid(date);
     const isFileValid = checkIsFileValid(fileName);
-    console.log('date', isDateValid, 'file', isFileValid);
-    this.setState({ isDateValid, isFileValid });
-    return isDateValid && isFileValid;
+    const isNameValid = checkIsNameValid(name);
+    this.setState({ isDateValid, isFileValid, isNameValid });
+    return isDateValid && isFileValid && isNameValid;
   }
 
   submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const rowDate = this.dateInput.current!.value;
     const img = URL.createObjectURL(this.fileInput.current!.files![0]);
-    const isValid = this.checkInputValues(rowDate, this.fileInput.current!.files![0].name);
+    const name = this.nameInput.current!.value;
+    const isValid = this.checkInputValues(rowDate, this.fileInput.current!.files![0].name, name);
     if (!isValid) return;
     const sex = this.maleInput.current!.checked ? 'male' : 'female';
-    const name = this.nameInput.current!.value;
     const car = this.carsSelect.current!.value;
     const date = rowDate.split('-').reverse().join('-');
     const card: IFormComponentData = {
@@ -74,22 +71,25 @@ export default class FormComponent extends Component<IFormComponentProps, IFormC
       car,
     };
     this.props.onSubmit(card);
-    this.resetFormData();
+    this.form.current?.reset();
   };
 
   render() {
     return (
-      <form data-testid="form" onSubmit={this.submitHandler} className={styles.form}>
+      <form
+        data-testid="form"
+        ref={this.form}
+        onSubmit={this.submitHandler}
+        className={styles.form}
+      >
         <label htmlFor="name">Name</label>
-        <input
-          minLength={3}
-          maxLength={25}
-          ref={this.nameInput}
-          id="name"
-          className={styles.input}
-          required
-          type="text"
-        />
+        <input ref={this.nameInput} id="name" className={styles.input} required type="text" />
+        {!this.state.isNameValid && (
+          <p className={styles.error}>
+            Name must start from upper char and has length from 3 chars to 15 chars. Use only a-z
+            chars.
+          </p>
+        )}
         <hr></hr>
         <label htmlFor="date">Birth Date</label>
         <input ref={this.dateInput} id="date" className={styles.input} required type="date" />
