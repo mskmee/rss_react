@@ -13,8 +13,8 @@ const mockCardData: IFormComponentData = {
 };
 describe('After mount', () => {
   it('Card data should render with properties', () => {
-    const { car, date, id, img, name, sex } = mockCardData;
-    render(<FormCard car={car} date={date} id={id} img={img} name={name} sex={sex} />);
+    const { car, date, img, name, sex } = mockCardData;
+    render(<FormCard {...mockCardData} />);
     expect(screen.getByText(sex)).toBeTruthy();
     expect(screen.getByText(car)).toBeTruthy();
     expect(screen.getByText(date)).toBeTruthy();
