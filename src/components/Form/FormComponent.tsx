@@ -72,6 +72,7 @@ export default class FormComponent extends Component<IFormComponentProps, IFormC
     };
     this.props.onSubmit(card);
     this.form.current?.reset();
+    this.setState({ isDateValid: true, isFileValid: true, isNameValid: true });
   };
 
   render() {
