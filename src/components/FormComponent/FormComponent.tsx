@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import styles from './FormComponent.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { IFormComponentData } from '../../pages/FormPage/FormPage';
-import { checkIsDateValid, checkIsFileValid } from '../../domain/inputsValidators';
+import {
+  checkIsDateValid,
+  checkIsFileValid,
+  checkIsNameValid,
+} from '../../domain/inputsValidators';
 
 interface IFormComponentProps {
   onSubmit: (data: IFormComponentData) => void;
@@ -20,27 +24,40 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
   const form = useRef<null | HTMLFormElement>(null);
   const [isDateValid, setIsDateValid] = useState(true);
   const [isFileValid, setIsFileValid] = useState(true);
+  const [isNameValid, setIsNameValid] = useState(true);
 
   useEffect(() => {
     nameInput.current?.focus();
   }, []);
 
-  const checkInputValues = (date: string, fileName: string) => {
+  const checkInputValues = (date: string, fileName: string, name: string) => {
     const isDate = checkIsDateValid(date);
     const isFile = checkIsFileValid(fileName);
+    const isNameValid = checkIsNameValid(name);
     setIsDateValid(isDate);
     setIsFileValid(isFile);
     return isDate && isFile;
+  };
+
+  const resetFormData = () => {
+    nameInput.current!.value = '';
+    dateInput.current!.value = '';
+    fileInput.current!.value = '';
+    policyCheck.current!.checked = false;
+    maleInput.current!.checked = false;
+    femaleInput.current!.checked = false;
+    setIsDateValid(true);
+    setIsFileValid(true);
   };
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const rowDate = dateInput.current!.value;
     const img = URL.createObjectURL(fileInput.current!.files![0]);
-    const isValid = checkInputValues(rowDate, fileInput.current!.files![0].name);
+    const name = nameInput.current!.value;
+    const isValid = checkInputValues(rowDate, fileInput.current!.files![0].name, name);
     if (!isValid) return;
     const sex = maleInput.current!.checked ? 'male' : 'female';
-    const name = nameInput.current!.value;
     const car = carsSelect.current!.value;
     const date = rowDate.split('-').reverse().join('-');
     const card: IFormComponentData = {
@@ -52,22 +69,25 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
       car,
     };
     onSubmit(card);
-    form.current?.reset();
+    resetFormData();
   };
   return (
-    <form data-testid="form" ref={form} onSubmit={submitHandler} className={styles.form}>
+    <form data-testid="form" onSubmit={submitHandler} className={styles.form}>
       <label htmlFor="name">Name</label>
       <input
         value={name}
         onChange={(e) => setName(e.target.value)}
-        minLength={3}
-        maxLength={25}
         ref={nameInput}
         id="name"
         className={styles.input}
-        required
         type="text"
       />
+      {!isNameValid && (
+        <p className={styles.error}>
+          Name must start from upper char and has length from 3 chars to 15 chars. Use only a-z
+          chars.
+        </p>
+      )}
       <hr></hr>
       <label htmlFor="date">Birth Date</label>
       <input ref={dateInput} id="date" className={styles.input} required type="date" />
