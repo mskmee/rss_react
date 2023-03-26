@@ -33,15 +33,6 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
     return isDate && isFile;
   };
 
-  const resetFormData = () => {
-    nameInput.current!.value = '';
-    dateInput.current!.value = '';
-    fileInput.current!.value = '';
-    policyCheck.current!.checked = false;
-    maleInput.current!.checked = false;
-    femaleInput.current!.checked = false;
-  };
-
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const rowDate = dateInput.current!.value;
