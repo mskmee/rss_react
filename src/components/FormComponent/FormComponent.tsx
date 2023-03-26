@@ -36,18 +36,7 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
     const isNameValid = checkIsNameValid(name);
     setIsDateValid(isDate);
     setIsFileValid(isFile);
-    return isDate && isFile;
-  };
-
-  const resetFormData = () => {
-    nameInput.current!.value = '';
-    dateInput.current!.value = '';
-    fileInput.current!.value = '';
-    policyCheck.current!.checked = false;
-    maleInput.current!.checked = false;
-    femaleInput.current!.checked = false;
-    setIsDateValid(true);
-    setIsFileValid(true);
+    return isDate && isFile && isNameValid;
   };
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
@@ -69,10 +58,13 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
       car,
     };
     onSubmit(card);
-    resetFormData();
+    form.current?.reset();
+    setIsDateValid(true);
+    setIsFileValid(true);
+    setIsNameValid(true);
   };
   return (
-    <form data-testid="form" onSubmit={submitHandler} className={styles.form}>
+    <form ref={form} data-testid="form" onSubmit={submitHandler} className={styles.form}>
       <label htmlFor="name">Name</label>
       <input
         value={name}
