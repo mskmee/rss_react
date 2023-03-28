@@ -35,17 +35,7 @@ describe('when rendered', () => {
     expect(screen.queryAllByText(productStub.gender)).toBeTruthy();
   });
 
-  it.todo('Should have card status', () => {
-    render(<CharacterCard {...productStub} />);
-    expect(screen.getByText(productStub.status)).toBeTruthy();
-  });
-
-  it.todo('Should have card species', () => {
-    render(<CharacterCard {...productStub} />);
-    expect(screen.getByText(productStub.species)).toBeTruthy();
-  });
-
-  it.todo('Should have product img', () => {
+  it('Should have product img', () => {
     render(<CharacterCard {...productStub} />);
     const img = screen.getByAltText(productStub.name) as HTMLImageElement;
     expect(img.src).toBe(productStub.image);

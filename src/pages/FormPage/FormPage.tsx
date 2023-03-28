@@ -2,24 +2,19 @@ import React, { useState } from 'react';
 import { PopUp } from '../../components/PopUp';
 import { FormComponent } from '../../components/FormComponent';
 import { FormCard } from '../../components/FormCard';
-import styles from './FormPage.module.css';
 import { AnimatePresence, motion } from 'framer-motion';
 import { pageAnimation } from '../../animates/animates';
-
-export interface IFormComponentData {
-  id: string;
-  name: string;
-  date: string;
-  car: string;
-  sex: string;
-  img: string;
-}
+import { IFormComponentData, setFormCards } from '../../store/formCardsSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'store/store';
+import styles from './FormPage.module.css';
 
 export const FormPage = () => {
-  const [cards, setCards] = useState<IFormComponentData[]>([]);
+  const cards = useSelector((state: RootState) => state.formCards.cards);
+  const dispatch = useDispatch();
   const [isPopUp, setIsPopUp] = useState(false);
   const onSubmit = (data: IFormComponentData) => {
-    setCards((prevState) => [...prevState, data]);
+    dispatch(setFormCards(data));
     setIsPopUp(true);
   };
   const onPopUpClose = () => {

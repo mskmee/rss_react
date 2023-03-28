@@ -1,25 +1,24 @@
+import { useRef } from 'react';
 import styles from './SearchBar.module.css';
+import type { RootState } from '../../store/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { setQuery } from '../../store/searchSlice';
+import { setPage } from '../../store/searchResultsSlice';
 
-interface ISearchBarProps {
-  query: string;
-  submitHandler: () => void;
-  setQuery: (data: string) => void;
-}
-export const SearchBar = ({ query, submitHandler, setQuery }: ISearchBarProps) => {
+export const SearchBar = () => {
+  const query = useSelector((state: RootState) => state.search.searchQuery);
+  const dispatch = useDispatch();
+  const inputRef = useRef<HTMLInputElement | null>(null);
   return (
     <form
       className={styles.wrapper}
       onSubmit={(e) => {
         e.preventDefault();
-        submitHandler();
+        dispatch(setQuery(inputRef.current!.value));
+        dispatch(setPage(1));
       }}
     >
-      <input
-        className={styles.input}
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <input className={styles.input} type="text" defaultValue={query} ref={inputRef} />
       <button type="submit" className={styles.icon} />
     </form>
   );
