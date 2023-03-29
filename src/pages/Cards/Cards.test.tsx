@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Cards } from './Cards';
-import { getDataFromLocalStorage, setDataToLocalStorage } from '../../domain/localStorageWorker';
 import { vi, describe, afterEach, it, expect, beforeEach } from 'vitest';
 import { Provider } from 'react-redux';
 import { store } from '../../store';

@@ -4,11 +4,6 @@ import { describe, expect, it, vi } from 'vitest';
 import { SearchBar } from './SearchBar';
 import { store } from '../../store';
 import { Provider } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { RootState } from 'store/store';
-
-const mockHandler = vi.fn();
-const mockQuery = 'find';
 
 describe('When component render', () => {
   it('Should change store on submit', async () => {

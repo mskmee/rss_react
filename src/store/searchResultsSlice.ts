@@ -50,12 +50,6 @@ export const searchResultSlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
-    setIsError: (state, action: PayloadAction<null | string>) => {
-      state.error = action.payload;
-    },
-    setIsLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-    },
   },
   extraReducers(builder) {
     builder
