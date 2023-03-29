@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './FormComponent.module.css';
 import { v4 as uuidv4 } from 'uuid';
-import { IFormComponentData } from '../../pages/FormPage';
+import { IFormComponentData } from '../../store/formCardsSlice';
 import {
   checkIsDateValid,
   checkIsFileValid,

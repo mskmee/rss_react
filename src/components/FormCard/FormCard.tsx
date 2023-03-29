@@ -1,5 +1,5 @@
 import styles from './FormCard.module.css';
-import { IFormComponentData as IFormCardProps } from '../../pages/FormPage/FormPage';
+import { IFormComponentData as IFormCardProps } from '../../store/formCardsSlice';
 
 export const FormCard = ({ img, name, car, sex, date }: IFormCardProps) => {
   return (

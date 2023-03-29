@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { IFormComponentData } from '../../pages/FormPage/FormPage';
+import { IFormComponentData } from '../../store/formCardsSlice';
 import { describe, expect, it } from 'vitest';
 import { FormCard } from './FormCard';
 
