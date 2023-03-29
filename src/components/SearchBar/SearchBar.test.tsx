@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { SearchBar } from './SearchBar';
 import { store } from '../../store';
 import { Provider } from 'react-redux';
