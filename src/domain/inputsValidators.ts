@@ -11,9 +11,6 @@ export const checkIsFileValid = (fileName: string) => {
 };
 
 export const checkIsNameValid = (name: string) => {
-  if (name.length < 3 || name.length > 15) {
-    return false;
-  }
   const regex = new RegExp(/^[A-Z][a-z]*$/);
   return regex.test(name);
 };
