@@ -11,12 +11,9 @@ interface ICardsWrapperProps {
   query: string;
 }
 export const CardsWrapper = ({ query }: ICardsWrapperProps) => {
-  // const [page, setpage] = useState<number>(1);
-  // const [totalPageCount, setTotalPageCount] = useState(1);
   const [responseData, setResponseData] = useState<ICardElement[]>([]);
   const [fetchCharacters, isLoading, isError] = useFetching(async () => {
     const response = await CharacterService.getByName(query);
-    // setTotalPageCount(response.data.info.pages);
     setResponseData(response.data.results);
   });
 
