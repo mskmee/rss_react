@@ -1,0 +1,40 @@
+.container {
+  margin: 2rem;
+  color: #fff;
+}
+
+.img_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  border-radius: 5px;
+}
+
+.info-row {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 0.4fr 1fr;
+}
+.info-name {
+  font-weight: bold;
+}
+
+.bio-wrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+}
+
+.bio {
+  padding: 10px;
+  background-color: #11282e;
+  border: transparent solid 1px;
+  border-radius: 5px;
+}
+
+.name {
+  font-size: 1.5rem;
+  text-align: center;
+}
