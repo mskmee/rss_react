@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lobster&display=swap');
+
+@font-face {
+  font-family: 'Get Schwifty';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./assets/fonts/get_schwifty.ttf');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(#224e4e, #4a392d);
+}
+
+body {
+  margin: 0;
+}
