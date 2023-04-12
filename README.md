@@ -1,4 +1,9 @@
-# This repository contains an application that retrieves data from the Rick and Morty API, using Vite and Jest for module testing, Axios for making requests, and TypeScript for type checking. Additionally, there is a server-side rendered version of the application in module 6.
+# This repository contains an application that retrieves data from the Rick and Morty API.
+1. Task urk: [https://github.com/rolling-scopes-school/tasks/tree/master/react/modules](https://github.com/rolling-scopes-school/tasks/tree/master/react/modules)
+2. Deploy: [https://react-module1.netlify.app/](https://react-module1.netlify.app/)
+
+## Using Vite and Jest for module testing, Axios for making requests, and TypeScript for type checking. 
+## Additionally, there is a server-side rendered version of the application in module 6.
 
 ## Project Structure
 
@@ -17,6 +22,7 @@ The project depends on the following libraries:
 * `axios` - promise-based HTTP client for making requests
 * `vitets` - testing framework
 * `typescript` - language for application development
+* `framer-motion` - animation library
 
 # RSS React course.
 
