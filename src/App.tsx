@@ -12,6 +12,7 @@ import { AnimatePresence } from 'framer-motion';
 
 export function App() {
   const location = useLocation();
+  console.log('dadwa');
   return (
     <>
       <Header />
