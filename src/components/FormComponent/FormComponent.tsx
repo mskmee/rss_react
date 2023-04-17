@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './FormComponent.module.css';
 import { v4 as uuidv4 } from 'uuid';
-import { IFormComponentData } from '../../pages/FormPage/FormPage';
 import { useForm } from 'react-hook-form';
 import { schema } from './formComponentShema';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { IFormComponentData } from 'store/formCardsSlice';
 
 interface IFormComponentProps {
   onSubmit: (data: IFormComponentData) => void;
