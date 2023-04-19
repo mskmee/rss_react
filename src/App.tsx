@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 
 import { Home } from './pages/Home';
@@ -12,7 +12,6 @@ import { AnimatePresence } from 'framer-motion';
 
 export function App() {
   const location = useLocation();
-  console.log('dadwa');
   return (
     <>
       <Header />
@@ -21,9 +20,8 @@ export function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/cards" element={<Cards />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
-          <Route path="/404" element={<NotFoundPage />}></Route>
           <Route path="/form" element={<FormPage />}></Route>
-          <Route path="*" element={<Navigate to="/404" />}></Route>
+          <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
       </AnimatePresence>
     </>

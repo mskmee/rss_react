@@ -1,17 +1,44 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import fs from 'fs/promises';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import express from 'express';
+import { createServer as createViteServer } from 'vite';
 
-dotenv.config();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+async function createServer() {
+  const app = express();
+  const vite = await createViteServer({
+    server: { middlewareMode: true },
+    appType: 'custom',
+  });
 
-const app: Express = express();
-const port = process.env.PORT;
+  app.use(vite.middlewares);
+  app.use('*', async (req, res, next) => {
+    const url = req.originalUrl;
+    try {
+      let template = await fs.readFile(path.resolve(__dirname, 'index.html'), 'utf-8');
+      template = await vite.transformIndexHtml(url, template);
+      const html = template.split(`<!--ssr-outlet-->`);
+      const { render } = await vite.ssrLoadModule('./src/entry-server.tsx');
+      const { pipe } = await render(url, {
+        onShellReady() {
+          res.write(html[0]);
+          pipe(res);
+        },
+        onAllReady() {
+          res.write(html[1]);
+          res.end();
+        },
+      });
+    } catch (e) {
+      if (e instanceof Error) {
+        vite.ssrFixStacktrace(e);
+      }
+      next(e);
+    }
+  });
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+  app.listen(5173, () => console.log('http://localhost:5173/'));
+}
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
-
-console.log('checdwadwak');
+createServer();

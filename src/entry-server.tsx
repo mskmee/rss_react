@@ -1,15 +1,19 @@
-import ReactDOMServer from 'react-dom/server';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { RenderToPipeableStreamOptions, renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
+
 import { App } from './App';
+import { store } from './store';
 
-console.log('check');
-
-export function SSRRender(url: string | Partial<Location>) {
-  console.log('check');
-
-  return ReactDOMServer.renderToString(
+export const render = (url: string, options: RenderToPipeableStreamOptions) => {
+  console.log(url, options);
+  return renderToPipeableStream(
     <StaticRouter location={url}>
-      <App />
-    </StaticRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </StaticRouter>,
+    options
   );
-}
+};
