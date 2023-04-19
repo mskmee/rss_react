@@ -7,7 +7,6 @@ import { App } from './App';
 import { store } from './store';
 
 export const render = (url: string, options: RenderToPipeableStreamOptions) => {
-  console.log(url, options);
   return renderToPipeableStream(
     <StaticRouter location={url}>
       <Provider store={store}>
