@@ -4,6 +4,7 @@
     "outDir": "./dist",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["cypress", "node"],
     "allowJs": false,
     "skipLibCheck": true,
     "baseUrl": "./src/",
@@ -20,6 +21,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["./src", "src/server.ts"],
+  "include": ["./src", "src/server.ts", "**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -12,7 +12,8 @@
     "test": "eslint src --fix && vitest run --changed HEAD~1",
     "coverage": "vitest run --coverage",
     "vitest": "vitest",
-    "deploy": "eslint src --fix && vitest run --changed HEAD~1 && tsc && vite build && gh-pages -d dist"
+    "deploy": "eslint src --fix && vitest run --changed HEAD~1 && tsc && vite build && gh-pages -d dist",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.0.0",
@@ -44,6 +45,7 @@
     "@typescript-eslint/parser": "^5.54.0",
     "@vitejs/plugin-react": "^3.1.0",
     "@vitest/coverage-c8": "^0.29.2",
+    "cypress": "^12.10.0",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^2.7.1",
