@@ -11,7 +11,7 @@ async function createServer() {
     server: { middlewareMode: true },
     appType: 'custom',
   });
-
+  const { SERVER_PORT, SERVER_FULL_URL } = await vite.ssrLoadModule('./src/server.env.ts');
   app.use(vite.middlewares);
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;
@@ -38,7 +38,7 @@ async function createServer() {
     }
   });
 
-  app.listen(5173, () => console.log('http://localhost:5173/'));
+  app.listen(SERVER_PORT, () => console.log(SERVER_FULL_URL));
 }
 
 createServer();

@@ -1,9 +1,8 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress';
+import { SERVER_FULL_URL } from './src/server.env';
 
 export default defineConfig({
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    baseUrl: SERVER_FULL_URL,
   },
 });

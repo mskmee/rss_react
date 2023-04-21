@@ -18,23 +18,20 @@ interface IFormSubmit {
   car: string;
 }
 export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
-  const nameInputRef = useRef<HTMLInputElement | null>(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setFocus,
     reset,
   } = useForm<IFormSubmit>({
     resolver: yupResolver(schema),
     mode: 'onSubmit',
   });
 
-  useEffect(() => {
-    nameInputRef.current?.focus();
-  }, [nameInputRef]);
-
   const submitHandler = handleSubmit((data) => {
     const { date, file, name, sex, car } = data;
+    console.log(data);
     const card: IFormComponentData = {
       id: uuidv4(),
       name,
@@ -46,6 +43,9 @@ export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
     onSubmit(card);
     reset();
   });
+  useEffect(() => {
+    setFocus('name');
+  }, [setFocus]);
   return (
     <form data-testid="form" onSubmit={submitHandler} className={styles.form}>
       <label htmlFor="name">Name</label>

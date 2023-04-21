@@ -25,3 +25,8 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
