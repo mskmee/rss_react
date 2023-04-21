@@ -15,7 +15,7 @@
     "deploy": "eslint src --fix && vitest run --changed HEAD~1 && tsc && vite build && gh-pages -d dist",
     "cypress:open": "cypress open",
     "cypress:test": "nyc instrument --compact=false src instrumented && npx cypress run --e2e && npx nyc report && npx nyc report --reporter=text-summary",
-    "cypress:coverage": "npx nyc instrument --compact=false src instrumented && npx nyc report --reporter"
+    "cypress:coverage": "npx cypress run --browser chrome  && npx nyc instrument --compact=false src instrumented && npx nyc report --reporter"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",

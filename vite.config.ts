@@ -8,9 +8,8 @@ export default defineConfig({
     react(),
     istanbul({
       exclude: ['node_modules', 'test/', 'coverage/'],
-      extension: ['.js', '.ts', '.tsx'],
+      extension: ['tsx'],
       cypress: true,
-      requireEnv: false,
     }),
   ],
   server: {
