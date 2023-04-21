@@ -1,5 +1,3 @@
-import { SERVER_FULL_URL } from 'server.env';
-
 beforeEach(() => {
   cy.visit('/cards');
 });
