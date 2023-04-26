@@ -1,7 +1,7 @@
 import styles from './FormCard.module.css';
 import { IFormComponentData as IFormCardProps } from '../../store/formCardsSlice';
 
-export const FormCard = ({ img, name, car, sex, date }: IFormCardProps) => {
+export const FormCard = ({ img, name, species, sex, date }: IFormCardProps) => {
   return (
     <div className={styles.card}>
       <div className={styles.imgWrapper}>
@@ -11,7 +11,7 @@ export const FormCard = ({ img, name, car, sex, date }: IFormCardProps) => {
         <b>Name: </b> {name}
       </div>
       <div>
-        <b>Car: </b> {car}
+        <b>Species: </b> {species}
       </div>
       <div>
         <b>Sex: </b> {sex}

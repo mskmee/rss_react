@@ -2,21 +2,6 @@
   padding: 2rem;
 }
 
-.input {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  background: #f1f1f1;
-}
-
-.input:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
 .button {
   background-color: #04aa6d;
   color: white;
@@ -26,14 +11,23 @@
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+  border-radius: 5px;
 }
 
-.error {
-  font-weight: 300;
-  font-style: italic;
-  font-size: 0.8rem;
-  color: red;
-}
 button:hover {
   opacity: 1;
+}
+
+.title {
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+.sex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
 }

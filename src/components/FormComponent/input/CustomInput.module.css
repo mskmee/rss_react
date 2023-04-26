@@ -1,0 +1,26 @@
+.input {
+  cursor: pointer;
+  padding: 15px;
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: #f1f1f1;
+}
+
+.input:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.error {
+  font-weight: 300;
+  font-style: italic;
+  font-size: 0.8rem;
+  color: red;
+}
+
+.label {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-right: 3rem;
+}

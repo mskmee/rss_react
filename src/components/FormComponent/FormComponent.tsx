@@ -1,105 +1,130 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import styles from './FormComponent.module.css';
 import { v4 as uuidv4 } from 'uuid';
 import { useForm } from 'react-hook-form';
-import { schema } from './formComponentShema';
+import { schema } from '../../helpers/formComponentShema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IFormComponentData } from 'store/formCardsSlice';
+import { CustomInput } from './input/CustomInput';
+import { CustomSelect } from './select/CustomSelect';
 
 interface IFormComponentProps {
   onSubmit: (data: IFormComponentData) => void;
 }
-interface IFormSubmit {
+export interface IFormSubmit {
   date: string;
   file: FileList;
   name: string;
   policy: boolean;
   sex: string;
-  car: string;
+  species: string;
 }
 export const FormComponent = ({ onSubmit }: IFormComponentProps) => {
-  const nameInputRef = useRef<HTMLInputElement | null>(null);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
+    setFocus,
   } = useForm<IFormSubmit>({
     resolver: yupResolver(schema),
-    mode: 'onSubmit',
+    mode: 'onChange',
   });
 
   useEffect(() => {
-    nameInputRef.current?.focus();
-  }, [nameInputRef]);
+    setFocus('name');
+  }, [setFocus]);
 
   const submitHandler = handleSubmit((data) => {
-    const { date, file, name, sex, car } = data;
+    const { date, file, name, sex, species } = data;
     const card: IFormComponentData = {
       id: uuidv4(),
       name,
       date,
       sex,
       img: URL.createObjectURL(file[0]),
-      car,
+      species,
     };
     onSubmit(card);
     reset();
   });
+  const selectOptions = ['human', 'alien'];
   return (
     <form data-testid="form" onSubmit={submitHandler} className={styles.form}>
-      <label htmlFor="name">Name</label>
-      <input {...register('name')} id="name" className={styles.input} type="text" />
-      <p className={styles.error}>
-        <>{errors.name?.message}</>
-      </p>
+      <CustomInput
+        name="name"
+        errors={errors}
+        register={register}
+        id="name"
+        title="Character name"
+        type="text"
+      />
       <hr></hr>
-      <label htmlFor="date">Birth Date</label>
-      <input {...register('date')} id="date" className={styles.input} type="date" />
-      <p className={styles.error}>
-        <>{errors.date?.message}</>
-      </p>
+      <CustomInput
+        name="date"
+        errors={errors}
+        register={register}
+        id="date"
+        title="Birth Date"
+        type="date"
+      />
       <hr></hr>
-      <label htmlFor="cars">Car</label>
-      <select {...register('car')} className={styles.input} required id="cars" name="cars">
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="fiat">Fiat</option>
-        <option value="audi">Audi</option>
-      </select>
+      <CustomSelect
+        errors={errors}
+        id="species"
+        name="species"
+        register={register}
+        title="Species"
+        options={selectOptions}
+      />
       <hr></hr>
-      <div>
-        <p>Private policy:</p>
-        <label htmlFor="policy">You would`n read it any way...</label>
-        <input {...register('policy')} id="policy" type="checkbox" />
+      <div className={styles.policy}>
+        <p className={styles.title}>Private policy:</p>
+        <CustomInput
+          errors={errors}
+          id="policy"
+          name="policy"
+          type="checkbox"
+          title="You would`n read it any way..."
+          register={register}
+        />
       </div>
-      <p className={styles.error}>
-        <>{errors.policy?.message}</>
-      </p>
       <hr></hr>
-      <div>
-        <p>Sex: </p>
-        <label htmlFor="male">Male</label>
-        <input {...register('sex')} name="sex" value="male" type="radio" />
-        <label htmlFor="female">Female</label>
-        <input {...register('sex')} name="sex" value="female" type="radio" />
+      <div className={styles.sex}>
+        <p className={styles.title}>Sex: </p>
+        <CustomInput
+          errors={errors}
+          id="male"
+          name="sex"
+          type="radio"
+          register={register}
+          title="Male"
+        />
+        <CustomInput
+          errors={errors}
+          id="female"
+          name="sex"
+          type="radio"
+          register={register}
+          title="Female"
+        />
       </div>
       <p className={styles.error}>
         <>{errors.sex?.message}</>
       </p>
       <hr></hr>
-      <label htmlFor="avatar">Choose photo image to upload</label>
-      <input
-        {...register('file')}
+      <CustomInput
         id="avatar"
-        className={styles.input}
+        errors={errors}
+        register={register}
         type="file"
+        title="Choose photo image to upload"
+        name="file"
         accept="image/*"
       />
-      <p className={styles.error}>
-        <>{errors.file?.message}</>
-      </p>
-      <button type="submit">Send</button>
+      <button className={styles.button} disabled={!isValid} type="submit">
+        Send
+      </button>
     </form>
   );
 };

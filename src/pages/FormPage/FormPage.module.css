@@ -4,3 +4,27 @@
   margin: 1rem;
   gap: 1rem;
 }
+
+.title {
+  text-align: center;
+  color: #ffffff;
+  margin: 1rem;
+}
+
+@media screen and (max-width: 1301px) {
+  .wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 901px) {
+  .wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 502px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+}

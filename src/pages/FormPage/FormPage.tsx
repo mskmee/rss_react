@@ -22,6 +22,9 @@ export const FormPage = () => {
   };
   return (
     <motion.div exit="exit" variants={pageAnimation} initial="hidden" animate="show">
+      <h3 className={styles.title}>
+        This is a form, which checks input and create card on the form page
+      </h3>
       <FormComponent onSubmit={onSubmit} />
       <div className={styles.wrapper}>
         {cards.map((data) => (

@@ -4,7 +4,7 @@ export interface IFormComponentData {
   id: string;
   name: string;
   date: string;
-  car: string;
+  species: string;
   sex: string;
   img: string;
 }
