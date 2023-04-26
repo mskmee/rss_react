@@ -59,7 +59,7 @@ export const searchResultSlice = createSlice({
       })
       .addCase(fetchCharacters.fulfilled, (state, action) => {
         state.cards = action.payload.results;
-        state.totalPageCount = action.payload.info.count;
+        state.totalPageCount = action.payload.info.pages;
         state.isLoading = false;
         state.error = null;
       })

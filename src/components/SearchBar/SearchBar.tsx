@@ -4,6 +4,7 @@ import type { RootState } from '../../store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { setQuery } from '../../store/searchSlice';
 import { setPage } from '../../store/searchResultsSlice';
+import { setDataToLocalStorage } from '../../domain/localStorageWorker';
 
 export const SearchBar = () => {
   const query = useSelector((state: RootState) => state.search.searchQuery);
@@ -14,6 +15,7 @@ export const SearchBar = () => {
       className={styles.wrapper}
       onSubmit={(e) => {
         e.preventDefault();
+        setDataToLocalStorage(inputRef.current!.value);
         dispatch(setQuery(inputRef.current!.value));
         dispatch(setPage(1));
       }}
