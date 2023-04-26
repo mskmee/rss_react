@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import classNames from 'classnames';
-import { fade, photoAnimation } from '../../animates/animates';
+import { fade } from '../../animates/animates';
 
 interface ILocations {
   [key: string]: string;

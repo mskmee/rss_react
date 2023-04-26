@@ -31,9 +31,9 @@ describe('When component rendered', () => {
 
   it('Check select input', async () => {
     const user = userEvent.setup();
-    const select = screen.getByLabelText(/car/i) as HTMLSelectElement;
-    await user.selectOptions(select, 'saab');
-    expect(select.value).toBe('saab');
+    const select = screen.getByLabelText(/species/i) as HTMLSelectElement;
+    await user.selectOptions(select, 'alien');
+    expect(select.value).toBe('alien');
   });
 
   it('Check checkbox input', async () => {
